@@ -1,0 +1,65 @@
+<html>
+<head>
+    <title>Luv Cutie Caller</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #response {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Call Luv Cutie</h1>
+        <button id="callButton">Call Luv Cutie</button>
+        <div id="response">
+            <!-- Response from LLM will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('callButton').addEventListener('click', function() {
+            fetch('/call_luv_cutie')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('response').textContent = data.message;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('response').textContent = 'Error calling Luv Cutie.';
+                });
+        });
+    </script>
+</body>
+</html>
